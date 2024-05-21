@@ -4,3 +4,5 @@ Added the customization in the mainscreen.html file where i added details and st
 Created new file about.html in the templates folder and added code to display information about the shop also added a controller and a  link in the mainscreen.html to handle the shift to and fro the about page.
 # Add a sample inventory appropriate
 In the bootstrap data file added the inventory required for the shop each item with its amount. this modification was done from line 28 to 61. this checks if the parts and products are empty so as to help not overwrite the current existing database.
+# Add a “Buy Now” button to your product list
+Added a buy now buttton in the mainscreen.html file in the products table in line 111 just belowthe delete button. Also added the script code to send the data to the backend for proceesing on successful purchase an alert occurs that informs users the purchase was successful. Also the inventory amount reduces.
