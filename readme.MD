@@ -14,3 +14,7 @@ Validatiion to keep the fields in check. this occurs in the htmlfiles of the cod
 # Add at least two unit tests for the maximum and minimum fields to the PartTest
 Added the tests in the Part test file in the test folder
 
+# remove the class files for any unused validators
+All uneccessary files removed that didnt have any purpose on the code 
+
+https://github.com/allinpne/supreme-waddle -> github link
