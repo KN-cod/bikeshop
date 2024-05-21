@@ -11,3 +11,6 @@ Added minimum and maximum fields this will help to have a concise number of part
 # Add validation for between or at the maximum and minimum fields
 Validatiion to keep the fields in check. this occurs in the htmlfiles of the code where javascript code is used to valldate the input files before pushing it to the backend. the code is in the head section of the inhouse and outsourced files in the templates folder.
 
+# Add at least two unit tests for the maximum and minimum fields to the PartTest
+Added the tests in the Part test file in the test folder
+
