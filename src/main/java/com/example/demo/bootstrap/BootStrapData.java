@@ -32,7 +32,14 @@ public class BootStrapData implements CommandLineRunner {
                 inhousePart.setName("Part " + i);
                 inhousePart.setPrice(10.0 * i);
                 inhousePart.setInv(20);
-                partRepository.save(inhousePart);
+                inhousePart.setMinimum(10);
+                inhousePart.setMaximum(30);
+
+                if (inhousePart.getInv() >= inhousePart.getMinimum() && inhousePart.getInv() <= inhousePart.getMaximum()) {
+                    partRepository.save(inhousePart);
+                } else {
+                    System.out.println("InhousePart " + i + " inventory out of bounds.");
+                }
             }
 
             // Add sample products
@@ -41,7 +48,14 @@ public class BootStrapData implements CommandLineRunner {
                 product.setName("Product " + i);
                 product.setPrice(100.0 * i);
                 product.setInv(10);
-                productRepository.save(product);
+                product.setMinimum(5);
+                product.setMaximum(20);
+
+                if (product.getInv() >= product.getMinimum() && product.getInv() <= product.getMaximum()) {
+                    productRepository.save(product);
+                } else {
+                    System.out.println("Product " + i + " inventory out of bounds.");
+                }
             }
 
             // Add sample outsourced parts
@@ -50,8 +64,15 @@ public class BootStrapData implements CommandLineRunner {
                 outsourcedPart.setName("Outsourced Part " + i);
                 outsourcedPart.setPrice(15.0 * i);
                 outsourcedPart.setInv(15);
+                outsourcedPart.setMinimum(10);
+                outsourcedPart.setMaximum(25);
                 outsourcedPart.setCompanyName("Supplier " + i);
-                outsourcedPartRepository.save(outsourcedPart);
+
+                if (outsourcedPart.getInv() >= outsourcedPart.getMinimum() && outsourcedPart.getInv() <= outsourcedPart.getMaximum()) {
+                    outsourcedPartRepository.save(outsourcedPart);
+                } else {
+                    System.out.println("OutsourcedPart " + i + " inventory out of bounds.");
+                }
             }
 
             System.out.println("Sample inventory added successfully.");

@@ -112,4 +112,18 @@ public abstract class Part implements Serializable {
     public int getMinInventory() {
         return 0;
     }
+
+    public int getMinimum() {
+        return 0;
+    }
+
+    public void setMinimum(int i) {
+    }
+
+    public void setMaximum(int i) {
+    }
+
+    public int getMaximum() {
+        return 1000;
+    }
 }

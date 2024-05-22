@@ -104,4 +104,18 @@ public class Product implements Serializable {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
+
+    public int getMinimum() {
+        return 0;
+    }
+
+    public void setMinimum(int i) {
+    }
+
+    public void setMaximum(int i) {
+    }
+
+    public int getMaximum() {
+        return 1000;
+    }
 }
