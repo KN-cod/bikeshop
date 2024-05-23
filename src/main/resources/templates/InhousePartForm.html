@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Part Form</title>
@@ -13,6 +12,7 @@
         function validateForm() {
             var maxInventory = document.getElementById("maxInventory").value;
             var minInventory = document.getElementById("minInventory").value;
+            var inventory = document.getElementById("inv").value;
 
             // Check if maxInventory is less than or equal to minInventory
             if (parseInt(maxInventory) <= parseInt(minInventory)) {
@@ -26,27 +26,36 @@
                 return false;
             }
 
+            // Check if inventory is less than minInventory or greater than maxInventory
+            if (parseInt(inventory) < parseInt(minInventory)) {
+                alert("Inventory must be greater than or equal to Min Inventory");
+                return false;
+            }
+            if (parseInt(inventory) > parseInt(maxInventory)) {
+                alert("Inventory must be less than or equal to Max Inventory");
+                return false;
+            }
+
             return true;
         }
     </script>
 </head>
 <body>
 <h1>Inhouse Part Detail</h1>
-<form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST"} onsubmit="return validateForm()">
+<form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST" onsubmit="return validateForm()">
 
-<!-- Add hidden form field to handle update -->
+    <!-- Add hidden form field to handle update -->
     <p><input type="hidden" th:field="*{id}"/></p>
 
-<p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
+    <p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
 
-<p><input type="text" path="price" th:field="*{price}" placeholder= "Price" class="form-control mb-4 col-4"/></p>
-<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+    <p><input type="text" path="price" th:field="*{price}" placeholder= "Price" class="form-control mb-4 col-4"/></p>
+    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
-<p><input type="text" path="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
+    <p><input type="text" id="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
     <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
 
     <p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
-
 
     <div class="form-group">
         <label for="maxInventory">Max Inventory</label>
@@ -57,11 +66,10 @@
         <label for="minInventory">Min Inventory</label>
         <input type="number" class="form-control" id="minInventory" name="minInventory" required>
     </div>
-<p><input type="submit" value="Submit" /></p>
-</form>
-<p><errors path="price" cssClass=""error/><p>
 
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+<a href="http://localhost:8080/">Link to Main Screen</a>
 </body>
 </html>

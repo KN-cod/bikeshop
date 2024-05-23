@@ -13,6 +13,7 @@
         function validateForm() {
             var maxInventory = document.getElementById("maxInventory").value;
             var minInventory = document.getElementById("minInventory").value;
+            var inventory = document.getElementById("inv").value;
 
             // Check if maxInventory is less than or equal to minInventory
             if (parseInt(maxInventory) <= parseInt(minInventory)) {
@@ -23,6 +24,16 @@
             // Check if inventory values are less than 0
             if (parseInt(maxInventory) < 0 || parseInt(minInventory) < 0) {
                 alert("Inventory values cannot be less than 0");
+                return false;
+            }
+
+            // Check if inventory is less than minInventory or greater than maxInventory
+            if (parseInt(inventory) < parseInt(minInventory)) {
+                alert("Inventory must be greater than or equal to Min Inventory");
+                return false;
+            }
+            if (parseInt(inventory) > parseInt(maxInventory)) {
+                alert("Inventory must be less than or equal to Max Inventory");
                 return false;
             }
 
@@ -44,7 +55,7 @@
     <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4"/>
     <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
 
-    <input type="text" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/>
+    <input type="text" th:field="*{inv}" id="inv" placeholder="Inventory" class="form-control mb-4 col-4"/>
     <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
 
     <input type="text" th:field="*{companyName}" placeholder="Company Name" class="form-control mb-4 col-4"/>
