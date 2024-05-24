@@ -9,7 +9,9 @@
 
     <!-- JavaScript validation -->
     <script>
-        function validateForm() {
+        function validateForm(event) {
+            event.preventDefault();
+
             var maxInventory = document.getElementById("maxInventory").value;
             var minInventory = document.getElementById("minInventory").value;
             var inventory = document.getElementById("inv").value;
@@ -36,13 +38,24 @@
                 return false;
             }
 
+            // Save values to localStorage if validation is successful
+            saveToLocalStorage(maxInventory, minInventory, inventory);
+
+            // Redirect to mainscreen.html
+            window.location.href = 'http://localhost:8080/';
             return true;
+        }
+
+        function saveToLocalStorage(maxInventory, minInventory, inventory) {
+            localStorage.setItem("maxInventory", maxInventory);
+            localStorage.setItem("minInventory", minInventory);
+            localStorage.setItem("inventory", inventory);
         }
     </script>
 </head>
 <body>
 <h1>Inhouse Part Detail</h1>
-<form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST" onsubmit="return validateForm()">
+<form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST" onsubmit="validateForm(event)">
 
     <!-- Add hidden form field to handle update -->
     <p><input type="hidden" th:field="*{id}"/></p>
